@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>MesaViva · Carta</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .errorlist { color: #F44336 !important; }
+    </style>
+</head>
+<body>
+<nav class="teal darken-2" role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" href="{% url 'menu:home' %}" class="brand-logo">MesaViva</a>
+        {% if request.user.is_authenticated %}
+            <ul class="right hide-on-med-and-down">
+                <li><a href="{% url 'menu:home' %}">Carta</a></li>
+                <li><a href="{% url 'menu:categoria-list' %}">Categorías</a></li>
+                <li><a href="{% url 'menu:log-out' %}">Salir ({{ request.user.username }})</a></li>
+            </ul>
+        {% endif %}
+    </div>
+</nav>
+<div class="container">
+    <div class="section">
+        {% block main-content %}{% endblock %}
+    </div>
+    <br><br>
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('select').material_select();
+    });
+</script>
+</body>
+</html>

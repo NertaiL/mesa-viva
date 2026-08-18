@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: mesaviva
+      POSTGRES_USER: mesaviva
+      POSTGRES_PASSWORD: mesaviva
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mesaviva -d mesaviva"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  web:
+    build: .
+    # Migrar y sembrar en el arranque: un dev clona y levanta, sin pasos previos.
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py seed_demo &&
+             python manage.py runserver 0.0.0.0:8000"
+    environment:
+      DATABASE_URL: postgres://mesaviva:mesaviva@db:5432/mesaviva
+      DJANGO_ALLOWED_HOSTS: localhost,127.0.0.1
+      DJANGO_DEBUG: "1"
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app          # recarga automática al editar código
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
