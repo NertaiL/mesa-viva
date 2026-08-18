@@ -1,0 +1,9 @@
+{% extends 'menu/fragments/base.html' %}
+{% block main-content %}
+    <div class="row">
+        <div class="col s12 m8 offset-m2">
+            <h5>{{ titulo }}</h5>
+            {% include 'menu/fragments/forms.html' %}
+        </div>
+    </div>
+{% endblock %}

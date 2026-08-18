@@ -1,0 +1,17 @@
+{% extends 'menu/fragments/base.html' %}
+{% block main-content %}
+    <div class="center-align">
+        <h4 class="teal-text text-darken-2">MesaViva</h4>
+        <p class="grey-text">Gestión de carta · acceso del personal</p>
+    </div>
+    <div class="row">
+        <div class="col s12 m6 offset-m3">
+            {% if message %}
+                <div class="card-panel red darken-1">
+                    <span class="white-text">{{ message }}</span>
+                </div>
+            {% endif %}
+            {% include 'menu/fragments/forms.html' %}
+        </div>
+    </div>
+{% endblock %}

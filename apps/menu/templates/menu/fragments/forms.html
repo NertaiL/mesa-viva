@@ -1,0 +1,33 @@
+{% load widget_tweaks %}
+<form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="row">
+            {% if field.errors %}{{ field.errors }}{% endif %}
+            {% if field|widget_type == 'checkboxinput' %}
+                <div class="col s12">
+                    <p>
+                        {% render_field field class+="filled-in" %}
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    </p>
+                </div>
+            {% elif field|widget_type == 'clearablefileinput' %}
+                <div class="browser-default input-field col s12">
+                    <p class="grey-text">{{ field.label }}</p>
+                    {% render_field field class+="validate" %}
+                </div>
+            {% else %}
+                <div class="input-field col s12">
+                    {% render_field field class+="validate" %}
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        <button class="btn waves-effect waves-light right teal darken-2" type="submit">
+            {{ boton|default:"Guardar" }}<i class="material-icons right">send</i>
+        </button>
+    </div>
+</form>
