@@ -15,5 +15,8 @@ RUN useradd --create-home mesaviva && chown -R mesaviva /app
 USER mesaviva
 
 EXPOSE 8000
+# Local
+#CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Deploy
+CMD ["sh", "-c", "python manage.py migrate && python manage.py seed_demo && python manage.py runserver 0.0.0.0:${PORT:-10000}"]
