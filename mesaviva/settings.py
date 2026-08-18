@@ -21,10 +21,16 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '1') == '1'
 # Local with docker
 #ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
+# Deploy
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
     "mesa-viva-yc4s.onrender.com",
+]
+
+# accept requests post in the deployment
+CSRF_TRUSTED_ORIGINS = [
+    "https://mesa-viva-yc4s.onrender.com",
 ]
 
 
