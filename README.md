@@ -12,6 +12,11 @@ El personal entra con usuario y contraseña, y lo que puede hacer depende de su 
 el **administrador** mantiene la carta (crear, editar, eliminar) y el **garzón** sólo la
 consulta desde el salón para responder qué hay disponible y a qué precio.
 
+## 🌐 Demo en línea
+La aplicación se encuentra desplegada en Render y puede probarse directamente desde el siguiente enlace:
+👉 [Acceder a MesaViva](https://mesa-viva-yc4s.onrender.com/)
+
+
 ---
 
 ## Capturas
